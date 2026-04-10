@@ -1,0 +1,76 @@
+.App {
+	height: 100vh;
+	background-color: #717177;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+}
+
+.contenedor {
+	width: 400px;
+	height: 600px;
+	background-color: #1b1b1f;
+	padding: 1rem;
+}
+
+.calculadora-pantalla {
+	width: 100%;
+	height: 20%;
+	background-color: #34343b;
+	color: white;
+	font-size: 40px;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	border-radius: 10px;
+}
+
+.contenedor-botones {
+	width: 100%;
+	height: 80%;
+	display: flex;
+	flex-direction: column;
+}
+
+.fila {
+	width: 100%;
+	height: 30%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.boton {
+	width: 100%;
+	height: 70px;
+	background-color: #34343b;
+	color: white;
+	font-size: 22px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 50%;
+	cursor: pointer;
+}
+
+.boton:hover {
+	background-color: #4c4c54;
+}
+
+.boton-limpiar {
+	width: 100%;
+	height: 10%;
+	background-color: #a53434;
+	color: white;
+	font-size: 22px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+.boton-limpiar:hover {
+	background-color: #ff4c4c;
+}
