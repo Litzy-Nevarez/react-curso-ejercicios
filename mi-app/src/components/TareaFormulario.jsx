@@ -15,7 +15,6 @@ function TareaFormulario ({ onSubmit }) {
         e.preventDefault();
 
         const tareaNueva = {
-            id: uuidv4(),
             texto: input,
             completada: false
         }

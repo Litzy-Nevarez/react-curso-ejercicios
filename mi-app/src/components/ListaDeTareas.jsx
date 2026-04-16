@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TareaFormulario from "./TareaFormulario";
 import Tarea from "./Tarea";
+
+import { getTareas, crearTarea, eliminarTarea, completarTarea } from "../services/tareaServices";
 
 import "./../css/ListaDeTareas.css";
 
@@ -8,28 +10,62 @@ function ListaDeTareas() {
 
     const [tareas, setTareas] = useState([]);
 
-    const agregarTarea = (tarea) => {
+    const agregarTarea = async (tarea) => {
         if(tarea.texto.trim()) {
-            tarea.texto = tarea.texto.trim();
-            const tareasActualizadas = [tarea, ...tareas];
-            setTareas(tareasActualizadas);
+            const response = await crearTarea({
+                title: tarea.texto,
+                completed: false
+            })
+
+            const nuevaTarea = {
+                id: response.data.id,
+                texto: response.data.title,
+                completada: response.data.completed
+            }
+            setTareas([...tareas, nuevaTarea]);
         }
     };
 
-    const eliminarTarea = (id) => {
+    const eliminarTareaApi = async (id) => {
+
+        await eliminarTarea(id);
+
         const tareasActualizadas = tareas.filter(tarea => tarea.id !== id);
         setTareas(tareasActualizadas);
     }
 
-    const completarTarea = (id) => {
+    const completarTareaApi = async (id) => {
+
+        const tarea = tareas.find(tarea => tarea.id === id)
+
+        const response = await completarTarea(id, {
+            completed: !tarea.completada
+        })        
+
         const tareasActualizadas = tareas.map(tarea => {
             if(tarea.id === id) {
-                tarea.completada = !tarea.completada;
+                tarea.completada = response.data.completed;
             }
             return tarea;
         });
         setTareas(tareasActualizadas);
     }
+
+    useEffect(() => {
+
+        const cargarTareas = async () => {
+            const response = await getTareas();
+
+            const tareasCargadas = response.data.map(tarea => ({
+                id: tarea.id,
+                texto: tarea.title,
+                completada: tarea.completed
+            }));
+            setTareas(tareasCargadas);
+        };
+
+        cargarTareas();
+    }, [])
 
     return (
         <>
@@ -41,8 +77,8 @@ function ListaDeTareas() {
                         id={tarea.id}
                         texto={tarea.texto}
                         completada={tarea.completada}
-                        completarTarea={completarTarea}
-                        eliminarTarea={eliminarTarea}
+                        completarTarea={completarTareaApi}
+                        eliminarTarea={eliminarTareaApi}
                     />
                 )}
             </div>
