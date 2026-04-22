@@ -1,0 +1,49 @@
+.mainInfo {
+    background-color: white;
+    padding: 25px;
+    border-radius: 20px;
+    max-width: 700px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.city {
+    font-size: 34px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.country {
+    font-size: 18px;
+    color: gray;
+    margin-bottom: 20px;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.weatherConditions {
+    text-align: left;
+}
+
+.condition {
+    font-size: 22px;
+}
+
+.current {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+iframe {
+    width: 100%;
+    max-width: 300px;
+    height: 200px;
+    border-radius: 10px;
+    border: none;
+}

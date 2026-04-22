@@ -3,6 +3,8 @@ import WeatherForm from './WeatherForm';
 import WeatherMainInfo from './WeatherMainInfo';
 import Loading from './Loading';
 
+import './../css/weatherapp.css';
+
 export default function WeatherApp() {
 
     const [weather, setWeather] = useState(null);
@@ -16,9 +18,14 @@ export default function WeatherApp() {
             // console.log(`${process.env.REACT_APP_URL}&key=93f0a891749b47b198d193221261704&q=${city}
             // `);
 
-            const request = await fetch(
-                `${process.env.REACT_APP_URL}&key=93f0a891749b47b198d193221261704&q=${city}
-            `);
+            const url = "https://api.weatherapi.com/v1/current.json?aqi=no";
+            const key = "93f0a891749b47b198d193221261704"
+
+            // const request = await fetch(
+            //     `${process.env.REACT_APP_URL}&key=93f0a891749b47b198d193221261704&q=${city}
+            // `);
+
+            const request = await fetch(`${url}&key=${key}&q=${city}`);
             const json = await request.json();
             setWeather(json);
 
@@ -48,7 +55,7 @@ export default function WeatherApp() {
     }, []);
 
     return (
-        <div>
+        <div className='weatherContainer'>
             <WeatherForm  onChangeCity={handleChangeCity} />
             {
                 loading
