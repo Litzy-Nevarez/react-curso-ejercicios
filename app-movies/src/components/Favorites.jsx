@@ -15,7 +15,7 @@ export default function Favorites({ favorites,  removeFavorite }) {
                         <ListItem
                             key={movie.imdbID}
                             secondaryAction={
-                                <IconButton onClick={removeFavorite(movie.imdbID)}>
+                                <IconButton onClick={() => removeFavorite(movie.imdbID)} >
                                     <DeleteIcon />
                                 </IconButton>
                             }
