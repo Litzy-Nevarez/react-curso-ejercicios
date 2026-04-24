@@ -8,8 +8,7 @@ export default function MovieList({ movies, addFavorite }) {
         <Grid container spacing={2}>
             {
                 movies.map(movie => (
-                    <Grid 
-                        item 
+                    <Grid  
                         xs={12} 
                         sm={6} 
                         md={4} 

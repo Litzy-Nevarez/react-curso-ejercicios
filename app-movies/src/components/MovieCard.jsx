@@ -1,3 +1,4 @@
+import { MovieFilter } from "@mui/icons-material";
 import {
     Card,
     CardMedia,
@@ -23,7 +24,7 @@ export default function MovieCard({ movie, addFavorite }) {
                 <Button 
                     variant="contained" 
                     sx={{ mt: 2 }} 
-                    onClick={() => addFavorite} 
+                    onClick={() => addFavorite(movie)} 
                 >
                     Agregar a favoritos ⭐
                 </Button>
