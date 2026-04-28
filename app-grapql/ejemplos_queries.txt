@@ -1,0 +1,54 @@
+query {
+  pokemons(limit:3) {
+  	results {
+  		id
+			name
+	 	image
+  	}
+	}
+  
+  pokemon(name: "bulbasaur"){
+    name
+    sprites {
+      front_default
+    }
+    
+    types{
+      type{
+        name
+      }
+    }
+    
+    abilities {
+      ability {
+        name
+      }
+    }
+  }
+}
+
+query {
+  list: pokemons(limit: 3){
+    results {
+      name
+    }
+  }
+  
+  detail: pokemon(name: "pikachu") {
+    name
+    weight
+    height
+  }
+}
+
+query {
+  pokemon(name:"snorlax") {
+    name
+    stats {
+      stat {
+        name
+      }
+      base_stat
+    }
+  }
+}
