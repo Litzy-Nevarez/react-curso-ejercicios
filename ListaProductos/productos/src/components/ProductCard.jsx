@@ -14,6 +14,11 @@ export default function ProductCard({ product }) {
             Editar
           </Link>
         </td>
+        <td>
+          <Link to={`/delete/${product.id}`} className='btn btn-danger'>
+            Eliminar
+          </Link>
+        </td>
     </tr>
   )
 }

@@ -18,7 +18,7 @@ export default function CreateProduct({ addProduct }) {
     e.preventDefault();
 
     const producto = {
-      id: uuidv4(),
+      // id: uuidv4(),
       title, 
       description,
       price: Number(price),
@@ -83,11 +83,12 @@ export default function CreateProduct({ addProduct }) {
         <div className='mb-3'>
           <label htmlFor="image" className='form-label'>Imagen</label>
           <input
-            type="file"
+            type="text"
             className='form-control'
             id="image"
             value={image}
-            onChange={(e) => setImage(e.target.files[0])}
+            onChange={(e) => setImage(e.target.value)}
+            placeholder='Imagen del producto'
           />
         </div>
         <div className='mb-3'>
