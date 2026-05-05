@@ -1,28 +1,103 @@
 import axios from "axios";
 
-const API = "http://localhost:3000/api/products";
+// const API = "http://localhost:3000/api/products";
+const API = "http://localhost:3000/graphql";
+
 
 export const getProducts = async () => {
-    const res = await axios.get(API);
-    return res.data;
-}
-
-export const getProduct = async (id) => {
-    const res = await axios.get(`${API}/${id}`);
-    return res.data;
+    try {
+    const res = await axios.post(API, {
+        query: `
+            {
+                products {
+                    id
+                    title
+                    description
+                    price
+                    stock
+                    category
+                    image
+                }
+            }
+        `
+    });
+    
+    return res.data.data.products;
+    
+    } catch (error) {
+        console.log(error.response.data);
+    }
 }
 
 export const createProduct = async (product) => {
-    await axios.post(API, product);
+    const res = await axios.post(API, {
+        query: `
+            mutation($title: String, $description: String, $price: Float, $stock: Int, $category: String, $image: String) {
+                createProduct(
+                title: $title
+                description: $description
+                price: $price
+                stock: $stock
+                category: $category
+                image: $image
+                ) {
+                    id
+                    title
+                }
+            }
+        `,
+        variables: product
+    });
+
+    return res.data.data.createProduct;
 }
 
 export const updateProduct = async (id, product) => {
-    await axios.put(`${API}/${id}`, product);
+    const res = await axios.post(API, {
+        query: `
+            mutation($id: Int!, $title: String, $description: String, $price: Float, $stock: Int, $category: String, $image: String) {
+                updateProduct(
+                    id: $id
+                    title: $title
+                    description: $description
+                    price: $price
+                    category: $category
+                    image: $image
+                ) {
+                    id
+                    title
+                }
+            }
+        `,
+        variables: {
+            id, ...product
+        }
+    });
+
+    return res.data.data.updateProduct;
 }
 
-export const deleteProduct = async (id) => {
-    await axios.delete(`${API}/${id}`);
-}
+// export const getProducts = async () => {
+//     const res = await axios.get(API);
+//     return res.data;
+// }
+
+// export const getProduct = async (id) => {
+//     const res = await axios.get(`${API}/${id}`);
+//     return res.data;
+// }
+
+// export const createProduct = async (product) => {
+//     await axios.post(API, product);
+// }
+
+// export const updateProduct = async (id, product) => {
+//     await axios.put(`${API}/${id}`, product);
+// }
+
+// export const deleteProduct = async (id) => {
+//     await axios.delete(`${API}/${id}`);
+// }
 
 // export const initialProducts = [
 //     {

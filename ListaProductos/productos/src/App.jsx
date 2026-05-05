@@ -7,7 +7,8 @@ import EditProduct from "./pages/EditProduct";
 import { useState, useEffect } from "react";
 // import { initialProducts } from "./data/products";
 
-import { getProducts, getProduct, createProduct, updateProduct, deleteProduct } from "./data/products";
+// import { getProducts, getProduct, createProduct, updateProduct, deleteProduct } from "./data/products";
+import { getProducts, createProduct, updateProduct } from "./data/products";
 import "./App.css";
 
 function App() {
@@ -24,16 +25,16 @@ function App() {
 	const actualizarProduct = async (id, actualizarProduct) => {
 		await updateProduct(id, actualizarProduct);
 
-		const data = await getProduct();
+		// const data = await getProducts();
 		loadProducts();
 	}
 
-	const eliminarProduct = async (id, eliminarProduct) => {
-		await deleteProduct(id, eliminarProduct);
+	// const eliminarProduct = async (id, eliminarProduct) => {
+	// 	await deleteProduct(id, eliminarProduct);
 
-		const data = await getProduct();
-		loadProducts();
-	}
+	// 	const data = await getProduct();
+	// 	loadProducts();
+	// }
 
 	const loadProducts = async () => {
 		const data = await getProducts();
